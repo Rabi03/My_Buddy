@@ -11,6 +11,9 @@ google-api-python-client = "*"
 geocoder = "*"
 geopy = "*"
 newsapi-python = "*"
+drf-nested-routers = "*"
+djoser = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 

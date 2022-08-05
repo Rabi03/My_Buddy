@@ -18,6 +18,10 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('music/', include('music.urls')),
-    path('news/', include('news.urls')),
+    path('api/music/', include('music.urls')),
+    path('api/news/', include('news.urls')),
+    path('api/search/', include('search.urls')),
+    path('api/', include('noteapi.urls')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
 ]

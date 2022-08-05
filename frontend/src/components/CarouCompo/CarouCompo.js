@@ -1,46 +1,91 @@
-import React from 'react';
-import Carousel from 'react-bootstrap/Carousel';
-import './CarouCompo.css'
-import home1 from '../../images/h1.jpg'
-import home2 from '../../images/h2.jpg'
-import music1 from '../../images/m1.jpg'
-import music2 from '../../images/m2.jpg'
-import music4 from '../../images/m4.jpg'
-import news1 from '../../images/n1.jpg'
-import news2 from '../../images/n2.jpg'
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Collapse from '@mui/material/Collapse';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { red } from '@mui/material/colors';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShareIcon from '@mui/icons-material/Share';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Grid } from '@mui/material';
 
-const CarouCompo = () => {
+const ExpandMore = styled((props) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
+
+const CarouCompo = ({news}) => {
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
     return (
-        <div>
-             <Carousel>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={music1}
-          alt="First slide"
-        />
+      <Grid container spacing={5}>
+        {news&&news.map(n=>
+        <Grid item xs={6} md={4}>
+        <Card sx={{ maxWidth: 345 }}>
+      <CardHeader
+        avatar={
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+            My_Buddy
+          </Avatar>
+        }
         
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={music4}
-          alt="Second slide"
-        />
-
-        
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={music2}
-          alt="Third slide"
-        />
-
-      
-      </Carousel.Item>
-    </Carousel>
-        </div>
+        title={n.author}
+        subheader={n.publishedAt}
+      />
+      <CardMedia
+        component="img"
+        height="194"
+        image={n.urlToImage}
+        alt="Paella dish"
+      />
+      <CardContent>
+        <Typography variant="body2" color="text.secondary">
+          {n.title}
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </ExpandMore>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>{n.content}</Typography>
+          
+        </CardContent>
+      </Collapse>
+    </Card>
+    </Grid>
+    )}
+    </Grid>
     );
 };
 

@@ -38,7 +38,7 @@ class searchByGenre(APIView):
 class searchByTrack(APIView):
     def post(self,request):
         keyword=request.data['type']
-        youtube=build('youtube','v3',developerKey='AIzaSyB9WDG0cjfffK-WZZE5TGimuh6L8P1leHY')
+        youtube=build('youtube','v3',developerKey='AIzaSyDvq_CyPrb6G6vJTEdFajxDEVlsu4ob-10')
         
         response = youtube.search().list(q=keyword + " music video",
                                         part="id,snippet",
