@@ -9,7 +9,7 @@ from googleapiclient.discovery import build
 class searchByArtist(APIView):
     def post(self,request):
         keyword=request.data['type']
-        youtube=build('youtube','v3',developerKey='AIzaSyB9WDG0cjfffK-WZZE5TGimuh6L8P1leHY')
+        youtube=build('youtube','v3',developerKey='AIzaSyDAu6R1JC-I2xqmV7Wo9J2AMZoARIjj05g')
         
         response = youtube.search().list(q=keyword + "official music video",
                                         part="id,snippet",
@@ -24,7 +24,7 @@ class searchByArtist(APIView):
 class searchByGenre(APIView):
     def post(self,request):
         keyword=request.data['type']
-        youtube=build('youtube','v3',developerKey='AIzaSyB9WDG0cjfffK-WZZE5TGimuh6L8P1leHY')
+        youtube=build('youtube','v3',developerKey='AIzaSyDAu6R1JC-I2xqmV7Wo9J2AMZoARIjj05g')
         
         response = youtube.search().list(q=keyword + "genre music",
                                         part="id,snippet",

@@ -102,8 +102,8 @@ useEffect(() => {
         }
 
     },
-    top:'150px',
-    left:'100px',
+    top:'500px',
+    left:'900px',
     
     });
   }, []);

@@ -11,5 +11,8 @@ from .models import Note
 class NoteViewSet(ModelViewSet):
     serializer_class=NoteSerializer
     queryset=Note.objects.all()
-    permission_classes=[IsAuthenticated]
+    def get_permissions(self):
+        if self.request.method in ['POST', 'PUT','PATCH', 'DELETE']:
+            return [IsAuthenticated()]
+        return []
 
