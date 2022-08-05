@@ -10,6 +10,7 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import Button from '@mui/material/Button'
+import Container from "@mui/material/Container";
 import rootContext from '../../context/rootContext';
 
 import axios from 'axios'
@@ -144,8 +145,10 @@ if(command==='planning'){
 
   return (
     <div>
+      
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
+        <Container>
           <Toolbar>
             <IconButton
               size="large"
@@ -166,7 +169,7 @@ if(command==='planning'){
             </Typography>
             <form onSubmit={handleSubmit}>
 
-            <Search align="center">
+            <Search sx={{marginLeft:"50%"}}>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
@@ -177,16 +180,11 @@ if(command==='planning'){
               />
                 </Search>
             </form>
-                      <Box
-                      sx={{ marginLeft: "30%"}}>
-                           
-                      <Button color="inherit">Login</Button>
-                      <Button color="inherit">Signin</Button>
-
-                     </Box>
           </Toolbar>
+          </Container>
         </AppBar>
       </Box>
+      
     </div>
   );
 };

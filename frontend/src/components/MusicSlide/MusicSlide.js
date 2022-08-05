@@ -16,7 +16,7 @@ const MusicSlide = ({music}) => {
     return (
       
         <div className="container my-5">
-            <p className="text-light mt-5 text-start">Recome Music</p>
+            <p className="text-light mt-5 text-start">Recommended Music</p>
            <div className="d-flex justify-content-between mt-2">
           
             <Grid container spacing={10}>

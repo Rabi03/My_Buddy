@@ -1,4 +1,4 @@
-import React,{useContext, useEffect} from 'react';
+import React,{useContext, useEffect,useState} from 'react';
 import mic from '../../images/mic.png'
 import Fab from '@mui/material/Fab';
 import { pink } from '@mui/material/colors';
@@ -24,6 +24,8 @@ const Speechtotext = () => {
     //     continuous: true,
     //     useLegacyResults: false
     // });
+
+    const [speech,setSpeech]=useState('')
 
 console.log(`music ${music} , News ${news} , state ${state}`)
     const getMusicData=async(data)=>{
@@ -72,6 +74,7 @@ useEffect(() => {
     alanBtn({
       key: '0e8ca716abe3d9410a33d16502ee9e0f2e956eca572e1d8b807a3e2338fdd0dc/stage',
       onCommand: ({command,data}) => {
+        setSpeech(command+" "+data)
         if (command === 'play music') {
             alert("Play Music")
             
@@ -102,8 +105,8 @@ useEffect(() => {
         }
 
     },
-    top:'500px',
-    left:'900px',
+    top:'50%',
+    left:'50%',
     
     });
   }, []);
@@ -111,7 +114,7 @@ useEffect(() => {
 
     return (
         <div className="mb-5">
-            <div class="alan-btn">Hi I am Buddy. Please talk .....</div>
+            <div class="alan-btn extra_margin text-light">Hi I am Buddy. Please talk .....</div>
             {/* <Fab color={Pink} aria-label="SpeechIcon" onClick={isRecording ? stopSpeechToText : startSpeechToText}>
                 <img className="speechIcon" src={mic} alt="" />
                 {isRecording ? 'Stop Recording' : 'Start Recording'}
@@ -124,6 +127,7 @@ useEffect(() => {
                 ))}
                 {interimResult && <li>{interimResult}</li>}
             </ul> */}
+            {speech}
         </div>
     );
 };
